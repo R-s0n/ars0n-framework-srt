@@ -1,5 +1,16 @@
 #!/bin/bash
 
+folder="./temp"
+
+if [ ! -w "$folder" ]; then
+    echo "[!] Fire-Starter does not have write permissions for $folder"
+    echo "[-] Changing permissions..."
+    chmod +w "$folder"
+    echo "[+] Permissions changed. Fire-Starter now has write permissions for $folder"
+else
+    echo "[+] Fire-Starter has write permissions for $folder"
+fi
+
 file_one="./temp/amass.tmp"
 
 if [ -f "$file_one" ]; then
