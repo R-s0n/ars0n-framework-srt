@@ -32,10 +32,10 @@ regex="{1,3}"
 config_test=$(ls config/amass_config.ini 2>/dev/null)
 if [ $? -eq 0 ]; then
     echo "[+] Amass config file detected! Scanning with custom settings..."
-    amass_command="amass enum -src -ip -brute -ipv4 -min-for-recursive 2 -timeout 60 -config config/amass_config.ini -d $fqdn -o ./temp/amass.tmp"
+    amass_command="sudo amass enum -src -ip -brute -ipv4 -min-for-recursive 2 -timeout 60 -config config/amass_config.ini -d $fqdn -o ./temp/amass.tmp"
 else
     echo "[!] Amass config file NOT detected! Scanning with default settings..."
-    amass_command="amass enum -src -ip -brute -ipv4 -min-for-recursive 2 -timeout 60 -d $fqdn -o ./temp/amass.tmp"
+    amass_command="sudo amass enum -src -ip -brute -ipv4 -min-for-recursive 2 -timeout 60 -d $fqdn -o ./temp/amass.tmp"
 fi
 
 eval $amass_command
