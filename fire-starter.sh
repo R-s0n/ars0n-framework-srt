@@ -85,9 +85,12 @@ while IFS= read -r line; do
 done < "$amass_file"
 
 for url in "${urls[@]}"; do
-    for verb in "${http_verbs[@]}"; do
-        curl -X "$verb" -sS -o /dev/null -w "%{http_code}\n" -x "$proxy" "$url"
+    verb="GET"
+    curl -X "$verb" -sS -o /dev/null -w "%{http_code}\n" -x "$proxy" "$url"
+done
 
+for verb in "${http_verbs[@]:1}"; do
+    for url in "${urls[@]}"; do
         if [[ "$verb" == "GET" || "$verb" == "HEAD" || "$verb" == "OPTIONS" ]]; then
             continue
         fi
