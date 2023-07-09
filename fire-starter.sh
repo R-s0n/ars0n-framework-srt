@@ -2,11 +2,16 @@
 
 folder="./temp"
 
-if [ ! -w "$folder" ]; then
+if sudo -n test ! -w "$folder"; then
     echo "[!] Fire-Starter does not have write permissions for $folder"
     echo "[-] Changing permissions..."
-    chmod +w "$folder"
-    echo "[+] Permissions changed. Fire-Starter now has write permissions for $folder"
+    sudo chmod +w "$folder"
+    if [ $? -eq 0 ]; then
+        echo "[+] Permissions changed. Fire-Starter now has write permissions for $folder"
+    else
+        echo "[-] Failed to change permissions."
+        exit 1
+    fi
 else
     echo "[+] Fire-Starter has write permissions for $folder"
 fi
@@ -50,6 +55,27 @@ else
 fi
 
 eval $amass_command
+
+file="./temp/amass.tmp"
+
+
+if [ ! -e "$file" ]; then
+    echo "File $file does not exist. Exiting the script."
+    exit 1
+fi
+
+if [ ! -r "$file" ]; then
+    echo "User does not have read access to $file. Changing permissions..."
+    sudo chmod +r "$file"
+    if [ $? -eq 0 ]; then
+        echo "Permissions changed successfully."
+    else
+        echo "Failed to change permissions."
+        exit 1
+    fi
+else
+    echo "User has read access to $file."
+fi
 
 cp ./temp/amass.tmp ./temp/amass.full.tmp >/dev/null
 
