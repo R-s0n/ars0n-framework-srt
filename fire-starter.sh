@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "[-] Running Fire-Starter Module..."
+
 folder="./temp"
 
 if sudo -n test ! -w "$folder"; then

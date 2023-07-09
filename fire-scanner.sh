@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "[-] Running Fire-Scanner Module..."
+
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
     echo "Invalid number of command line arguments. Please provide a single URL argument or a URL argument with one of the flags: --sql, --xss, --dom, --inj."
     exit 1
