@@ -4,6 +4,8 @@ echo "[-] Running Fire-Starter Module..."
 
 folder="./temp"
 
+sudo ls ./temp
+
 if sudo -n test ! -w "$folder"; then
     echo "[!] Fire-Starter does not have write permissions for $folder"
     echo "[-] Changing permissions..."
