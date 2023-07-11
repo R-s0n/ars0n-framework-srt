@@ -21,7 +21,7 @@ fi
 
 tld=$(echo "$url" | awk -F/ '{print $3}' | awk -F. '{print $(NF-1)"."$NF}')
 
-json_data="{\"urls\": [\"$url\"], \"scope\":{\"host_or_ip_range\":\"$tld\"},\"scan_configurations\":[]}"
+json_data="{\"urls\": [\"$url\"], \"scope\":{\"host_or_ip_range\":\"$tld\"},\"resource_pool\":\"Low and Slow\",\"protocol_option\":\"httpAndHttps\",\"scan_configurations\":[]}"
 
 if [ "$flag" != "" ]; then
     config_file=""
